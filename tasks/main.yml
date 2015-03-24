@@ -12,6 +12,10 @@
     - httpd
     - packages
 
+- name: configure httpd
+  template: src="httpd.conf.{{ ansible_os_family }}{{ ansible_distribution_major_version }}.j2" dest=/etc/httpd/conf/httpd.conf mode=0644 owner=root group=root
+  notify: restart httpd
+
 - name: configure firewalld for httpd
   firewalld: zone=public service={{ item }} permanent=true state=enabled
   with_items:
