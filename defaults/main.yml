@@ -1,3 +1,4 @@
 ---
 httpd_mod_ssl: true
+httpd_mpm: event
 
