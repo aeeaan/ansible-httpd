@@ -40,3 +40,19 @@
     - httpd
     - firewall
     - configuration
+
+- name: allow httpd connect db
+  seboolean: name=httpd_can_network_connect_db state={{ httpd_can_network_connect_db }} persistent=yes
+  when: ansible_selinux.status == 'enabled'
+  tags:
+    - httpd
+    - selinux
+    - configuration
+
+- name: allow httpd connect
+  seboolean: name=httpd_can_network_connect state={{ httpd_can_network_connect }} persistent=yes
+  when: ansible_selinux.status == 'enabled'
+  tags:
+    - httpd
+    - selinux
+    - configuration

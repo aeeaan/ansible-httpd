@@ -2,3 +2,6 @@
 httpd_mod_ssl: true
 httpd_mpm: event
 
+#selinux adjustments
+httpd_can_network_connect: 'no'
+httpd_can_network_connect_db: 'yes'
