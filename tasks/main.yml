@@ -66,3 +66,10 @@
     - httpd
     - selinux
     - configuration
+
+- name: ensure httpd is enabled and running
+  service: name=httpd enabled=yes state=started
+  tags:
+    - httpd
+    - configuration
+    - services
