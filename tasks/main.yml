@@ -23,7 +23,17 @@
   template: src="{{ item }}.j2" dest="/etc/httpd/conf.modules.d/{{ item }}" owner=root group=root mode=0644
   with_items:
     - 00-mpm.conf
+    - 00-ssl.conf
   when: ansible_distribution_major_version|int > 6
+  notify: restart httpd
+  tags:
+    - httpd
+    - configuration
+
+- name: configure conf.d
+  template: src="{{ item }}.j2" dest="/etc/httpd/conf.d/{{ item }}" owner=root group=root mode=0644
+  with_items:
+    - ssl.conf
   notify: restart httpd
   tags:
     - httpd
