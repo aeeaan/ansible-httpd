@@ -79,7 +79,7 @@ SSLProtocol all -SSLv2
 #   SSL Cipher Suite:
 #   List the ciphers that the client is permitted to negotiate.
 #   See the mod_ssl documentation for a complete list.
-SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5
+SSLCipherSuite {{ httpd_ssl_ciphers }}
 
 #   Speed-optimized SSL Cipher configuration:
 #   If speed is your main concern (on busy HTTPS servers e.g.),
@@ -92,21 +92,23 @@ SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5
 #   compromised, captures of past or future traffic must be
 #   considered compromised, too.
 #SSLCipherSuite RC4-SHA:AES128-SHA:HIGH:MEDIUM:!aNULL:!MD5
-#SSLHonorCipherOrder on 
+{% if httpd_honor_cipher_order %}
+SSLHonorCipherOrder on 
+{% endif %}
 
 #   Server Certificate:
 # Point SSLCertificateFile at a PEM encoded certificate.  If
 # the certificate is encrypted, then you will be prompted for a
 # pass phrase.  Note that a kill -HUP will prompt again.  A new
 # certificate can be generated using the genkey(1) command.
-SSLCertificateFile /etc/pki/tls/certs/localhost.crt
+SSLCertificateFile {{ httpd_ssl_certificate }}
 
 #   Server Private Key:
 #   If the key is not combined with the certificate, use this
 #   directive to point at the key file.  Keep in mind that if
 #   you've both a RSA and a DSA private key you can configure
 #   both in parallel (to also allow the use of DSA ciphers, etc.)
-SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
+SSLCertificateKeyFile {{ httpd_ssl_key }}
 
 #   Server Certificate Chain:
 #   Point SSLCertificateChainFile at a file containing the
@@ -115,13 +117,17 @@ SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
 #   the referenced file can be the same as SSLCertificateFile
 #   when the CA certificates are directly appended to the server
 #   certificate for convinience.
-#SSLCertificateChainFile /etc/pki/tls/certs/server-chain.crt
+{% if httpd_ssl_chain %}
+SSLCertificateChainFile {{ httpd_ssl_chain }}
+{% endif %}
 
 #   Certificate Authority (CA):
 #   Set the CA certificate verification path where to find CA
 #   certificates for client authentication or alternatively one
 #   huge file containing all of them (file must be PEM encoded)
-#SSLCACertificateFile /etc/pki/tls/certs/ca-bundle.crt
+{% if httpd_ssl_ca %}
+SSLCACertificateFile {{ httpd_ssl_ca }}
+{% endif %}
 
 #   Client Authentication (Type):
 #   Client certificate verification type and depth.  Types are
