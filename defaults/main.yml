@@ -1,6 +1,6 @@
 ---
 httpd_mod_ssl: true
-httpd_mpm: event
+httpd_mpm: prefork
 
 httpd_http_listeners:
   - 80
