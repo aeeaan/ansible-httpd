@@ -14,5 +14,5 @@ httpd_ssl_certificate: /etc/pki/tls/certs/localhost.crt
 httpd_ssl_key: /etc/pki/tls/private/localhost.key
 httpd_ssl_chain: '' 
 httpd_ssl_ca: ''
-httpd_ssl_ciphers: "HIGH:MEDIUM:!aNULL:!MD5"
-httpd_honor_cipher_order: false
+httpd_ssl_ciphers: "EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+AESGCM:EECDH:EDH+AESGCM:EDH+aRSA:HIGH:!MEDIUM:!LOW:!aNULL:!eNULL:!LOW:!RC4:!MD5:!EXP:!PSK:!SRP:!DSS"
+httpd_honor_cipher_order: true

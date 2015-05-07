@@ -51,30 +51,10 @@ SSLRandomSeed connect builtin
 SSLCryptoDevice builtin
 #SSLCryptoDevice ubsec
 
-##
-## SSL Virtual Host Context
-##
-
-<VirtualHost _default_:443>
-
-# General setup for the virtual host, inherited from global configuration
-#DocumentRoot "/var/www/html"
-#ServerName www.example.com:443
-
-# Use separate log files for the SSL virtual host; note that LogLevel
-# is not inherited from httpd.conf.
-ErrorLog logs/ssl_error_log
-TransferLog logs/ssl_access_log
-LogLevel warn
-
-#   SSL Engine Switch:
-#   Enable/Disable SSL for this virtual host.
-SSLEngine on
-
 #   SSL Protocol support:
 # List the enable protocol levels with which clients will be able to
 # connect.  Disable SSLv2 access by default:
-SSLProtocol all -SSLv2
+SSLProtocol all -SSLv2 -SSLv3
 
 #   SSL Cipher Suite:
 #   List the ciphers that the client is permitted to negotiate.
@@ -95,6 +75,28 @@ SSLCipherSuite {{ httpd_ssl_ciphers }}
 {% if httpd_honor_cipher_order %}
 SSLHonorCipherOrder on 
 {% endif %}
+
+SSLCompression off
+
+##
+## SSL Virtual Host Context
+##
+
+<VirtualHost _default_:443>
+
+# General setup for the virtual host, inherited from global configuration
+#DocumentRoot "/var/www/html"
+#ServerName www.example.com:443
+
+# Use separate log files for the SSL virtual host; note that LogLevel
+# is not inherited from httpd.conf.
+ErrorLog logs/ssl_error_log
+TransferLog logs/ssl_access_log
+LogLevel warn
+
+#   SSL Engine Switch:
+#   Enable/Disable SSL for this virtual host.
+SSLEngine on
 
 #   Server Certificate:
 # Point SSLCertificateFile at a PEM encoded certificate.  If
