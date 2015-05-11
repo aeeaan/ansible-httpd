@@ -1,0 +1,27 @@
+<VirtualHost *:80>
+
+    ServerName {{ item.servername }}
+    {% if item.redirect_http_to_https -%}
+    RewriteEngine On
+    RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
+    {% else %}
+    DocumentRoot {{ item.documentroot }}
+    {% endif %}
+
+</VirtualHost>
+
+{% if item.private_key is defined and item.certificate is defined and httpd_mod_ssl %}
+<VirtualHost *:443>
+
+    ServerName {{ item.servername }}
+    DocumentRoot {{ item.documentroot }}
+
+    SSLEngine On
+    SSLCertificateFile /etc/pki/tls/certs/{{ item.servername }}.crt
+    SSLCertificateKeyFile /etc/pki/tls/private/{{ item.servername }}.key
+    {% if item.chain is defined -%}
+    SSLCertificateChainFile /etc/pki/tls/certs/{{ item.servername }}.chain.crt
+    {%- endif %}
+
+</VirtualHost>
+{% endif %}

@@ -70,6 +70,14 @@
     - httpd
     - configuration
 
+- name: configure vhosts
+  template: src=vhost.conf.j2 dest="/etc/httpd/conf.d/vhost_{{ item.servername }}.conf" owner=root group=root mode=0644
+  with_items: httpd_vhosts
+  no_log: true
+  tags:
+    - httpd
+    - configuration
+
 - name: configure firewalld for httpd
   firewalld: zone=public service={{ item }} permanent=true state=enabled
   with_items:
