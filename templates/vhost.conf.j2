@@ -6,7 +6,13 @@
     RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
     {% else %}
     DocumentRoot {{ item.documentroot }}
-    {% endif %}
+    {% endif -%}
+    CustomLog logs/{{ item.servername }}-access_log combined
+    ErrorLog logs/{{ item.servername }}-error_log
+
+    {% if item.raw is defined -%}
+    {{ item.raw }}
+    {%- endif %}
 
 </VirtualHost>
 
@@ -15,6 +21,12 @@
 
     ServerName {{ item.servername }}
     DocumentRoot {{ item.documentroot }}
+    CustomLog logs/{{ item.servername }}-access_log combined
+    ErrorLog logs/{{ item.servername }}-error_log
+
+    {% if item.raw is defined -%}
+    {{ item.raw }}
+    {% endif -%}
 
     SSLEngine On
     SSLCertificateFile /etc/pki/tls/certs/{{ item.servername }}.crt
