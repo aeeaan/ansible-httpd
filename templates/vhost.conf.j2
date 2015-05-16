@@ -10,6 +10,16 @@
     CustomLog logs/{{ item.servername }}-access_log combined
     ErrorLog logs/{{ item.servername }}-error_log
 
+    <Directory {{ item.documentroot }}>
+        <IfModule mod_authz_core.c>
+            Require all granted
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+            Order allow,deny
+            Allow from all
+        </IfModule>
+    </Directory>
+
     {% if item.raw is defined -%}
     {{ item.raw }}
     {%- endif %}
@@ -23,6 +33,16 @@
     DocumentRoot {{ item.documentroot }}
     CustomLog logs/{{ item.servername }}-access_log combined
     ErrorLog logs/{{ item.servername }}-error_log
+
+    <Directory {{ item.documentroot }}>
+        <IfModule mod_authz_core.c>
+            Require all granted
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+            Order allow,deny
+            Allow from all
+        </IfModule>
+    </Directory>
 
     {% if item.raw is defined -%}
     {{ item.raw }}
