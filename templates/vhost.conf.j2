@@ -1,7 +1,7 @@
 <VirtualHost *:80>
 
     ServerName {{ item.servername }}
-    {% if item.redirect_http_to_https -%}
+    {% if item.redirect_http_to_https is defined and item.redirect_http_to_https -%}
     RewriteEngine On
     RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
     {% else %}
