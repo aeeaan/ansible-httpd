@@ -73,6 +73,7 @@
 - name: configure vhosts
   template: src=vhost.conf.j2 dest="/etc/httpd/conf.d/vhost_{{ item.servername }}.conf" owner=root group=root mode=0644
   with_items: httpd_vhosts
+  when: httpd_vhosts is defined
   no_log: true
   tags:
     - httpd
