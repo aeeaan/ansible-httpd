@@ -1,4 +1,4 @@
-<VirtualHost *:80>
+<VirtualHost *:{{ httpd_http_port }}>
 
     ServerName {{ item.servername }}
     {% if item.redirect_http_to_https is defined and item.redirect_http_to_https -%}

@@ -41,9 +41,7 @@ ServerRoot "/etc/httpd"
 #
 #Listen 12.34.56.78:80
 
-{% for item in httpd_http_listeners %}
-Listen {{ item }}
-{% endfor %}
+Listen {{ httpd_http_port }}
 
 #
 # Dynamic Shared Object (DSO) Support

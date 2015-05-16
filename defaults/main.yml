@@ -2,8 +2,7 @@
 httpd_mod_ssl: true
 httpd_mpm: prefork
 
-httpd_http_listeners:
-  - 80
+httpd_http_port: 80
 
 #selinux adjustments
 httpd_can_network_connect: 'no'
