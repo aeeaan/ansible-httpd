@@ -75,6 +75,7 @@
   with_items: httpd_vhosts
   when: httpd_vhosts is defined
   no_log: true
+  notify: restart httpd
   tags:
     - httpd
     - configuration
