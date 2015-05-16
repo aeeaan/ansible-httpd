@@ -10,6 +10,10 @@
     CustomLog logs/{{ item.servername }}-access_log combined
     ErrorLog logs/{{ item.servername }}-error_log
 
+    {% if item.ssl_offloaded is defined and item.ssl_offloaded -%}
+    SetEnvIf X-Forwarded-Proto https HTTPS=on
+    {% endif %}
+
     <Directory {{ item.documentroot }}>
         <IfModule mod_authz_core.c>
             Require all granted
