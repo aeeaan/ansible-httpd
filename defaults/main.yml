@@ -4,6 +4,8 @@ httpd_mpm: prefork
 
 httpd_http_port: 80
 httpd_https_port: 443
+httpd_open_http_port: false
+httpd_open_https_port: false
 
 #selinux adjustments
 httpd_can_network_connect: 'no'

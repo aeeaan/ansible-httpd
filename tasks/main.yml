@@ -80,12 +80,18 @@
     - httpd
     - configuration
 
-- name: configure firewalld for httpd
-  firewalld: zone=public service={{ item }} permanent=true state=enabled
-  with_items:
-    - http
-    - https
-  when: ansible_distribution_major_version|int > 6
+- name: configure firewalld for http
+  firewalld: zone=public port="{{ httpd_http_port }}/tcp" permanent=true state=enabled
+  when: httpd_open_http_port and ansible_distribution_major_version|int > 6
+  notify: reload firewall
+  tags:
+    - httpd
+    - firewall
+    - configuration
+
+- name: configure firewalld for https
+  firewalld: zone=public port="{{ httpd_https_port }}/tcp" permanent=true state=enabled
+  when: httpd_open_https_port and ansible_distribution_major_version|int > 6
   notify: reload firewall
   tags:
     - httpd
