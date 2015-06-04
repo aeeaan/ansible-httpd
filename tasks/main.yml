@@ -13,36 +13,6 @@
     - ssl
     - packages
 
-- name: install private keys
-  copy: content="{{ item.private_key }}" dest="/etc/pki/tls/private/{{ item.servername }}.key" owner=root group=root mode=0600
-  with_items: httpd_vhosts
-  when: item.private_key is defined
-  no_log: true
-  tags:
-    - httpd
-    - ssl
-    - configuration
-
-- name: install certificates
-  copy: content="{{ item.certificate }}" dest="/etc/pki/tls/certs/{{ item.servername }}.crt" owner=root group=root mode=0644
-  with_items: httpd_vhosts
-  when: item.private_key is defined
-  no_log: true
-  tags:
-    - httpd
-    - ssl
-    - configuration
-
-- name: install certificate chains
-  template: src=chain.pem.j2 dest="/etc/pki/tls/certs/{{ item.servername }}.chain.crt" owner=root group=root mode=0644
-  with_items: httpd_vhosts
-  when: item.chain is defined
-  no_log: true
-  tags:
-    - httpd
-    - ssl
-    - configuration
-
 - name: configure httpd.conf
   template: src="httpd.conf.{{ ansible_os_family }}{{ ansible_distribution_major_version }}.j2" dest=/etc/httpd/conf/httpd.conf mode=0644 owner=root group=root
   notify: restart httpd
