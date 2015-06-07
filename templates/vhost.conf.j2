@@ -30,7 +30,7 @@
 
 </VirtualHost>
 
-{% if ssl_certificates[item.servername] is defined and ssl_certificates[item.servername].private_key is defined and ssl_certificates[item.servername].certificate is defined and httpd_mod_ssl %}
+{% if ssl_certificates is defined and ssl_certificates[item.servername] is defined and ssl_certificates[item.servername].private_key is defined and ssl_certificates[item.servername].certificate is defined and httpd_mod_ssl %}
 <VirtualHost *:443>
 
     ServerName {{ item.servername }}
@@ -55,7 +55,7 @@
     SSLEngine On
     SSLCertificateFile /etc/pki/tls/certs/{{ item.servername }}.crt
     SSLCertificateKeyFile /etc/pki/tls/private/{{ item.servername }}.key
-    {% if ssl_certificates[item.servername] is defined and ssl_certificates[item.servername].chain is defined -%}
+    {% if ssl_certificates[item.servername].chain is defined -%}
     SSLCertificateChainFile /etc/pki/tls/certs/{{ item.servername }}.chain.crt
     {%- endif %}
 
