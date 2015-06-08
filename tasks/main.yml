@@ -40,8 +40,18 @@
     - httpd
     - configuration
 
-- name: configure vhosts
+- name: configure vhost containers
   template: src=vhost.conf.j2 dest="/etc/httpd/conf.d/vhost_{{ item.servername }}.conf" owner=root group=root mode=0644
+  with_items: httpd_vhosts
+  when: httpd_vhosts is defined
+  no_log: true
+  notify: restart httpd
+  tags:
+    - httpd
+    - configuration
+
+- name: configure vhost common
+  template: src=vhost.common.conf.j2 dest="/etc/httpd/conf.d/vhost_{{ item.servername }}.common.conf" owner=root group=root mode=0644
   with_items: httpd_vhosts
   when: httpd_vhosts is defined
   no_log: true
