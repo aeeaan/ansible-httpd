@@ -10,10 +10,10 @@
 </Directory>
 
 {% if python_wsgi_apps is defined and python_wsgi_apps[item.servername] is defined and python_wsgi_apps[item.servername]|length > 0 %}
-{% for wsgi_appname, wsgi_app in python_wsgi_apps[item.servername].iteritems() %}
+{% for wsgi_app in python_wsgi_apps[item.servername] %}
 {% if wsgi_app.alias is defined and wsgi_app.file is defined %}
-    WSGIDaemonProcess {{ wsgi_appname }} processes={{ wsgi_app.processes }} threads={{ wsgi_app.threads }} user={{ wsgi_app.user }} group={{ wsgi_app.group }} umask={{ wsgi_app.umask }}
-    WSGIProcessGroup {{ wsgi_appname }}
+    WSGIDaemonProcess {{ wsgi_app.name }} processes={{ wsgi_app.processes }} threads={{ wsgi_app.threads }} user={{ wsgi_app.user }} group={{ wsgi_app.group }} umask={{ wsgi_app.umask }}
+    WSGIProcessGroup {{ wsgi_app.name }}
     WSGIScriptAlias {{ wsgi_app.alias }} {{ wsgi_app.file }}
 {% endif %}
 {% endfor %}
