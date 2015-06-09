@@ -9,12 +9,10 @@
     </IfModule>
 </Directory>
 
-{% if python_wsgi_apps is defined and python_wsgi_apps[item.servername] is defined and python_wsgi_apps[item.servername]|length > 0 %}
-{% for wsgi_app in python_wsgi_apps[item.servername] %}
-{% if wsgi_app.alias is defined and wsgi_app.file is defined %}
-    WSGIProcessGroup {{ item.servername }}.{{ wsgi_app.name }}
-    WSGIScriptAlias {{ wsgi_app.alias }} {{ wsgi_app.file }}
-{% endif %}
+{% if python_wsgi_apps is defined and python_wsgi_apps[item.servername] is defined and python_wsgi_apps[item.servername].aliases is defined and python_wsgi_apps[item.servername].aliases|length > 0 %}
+WSGIProcessGroup {{ item.servername }}
+{% for scriptalias in python_wsgi_apps[item.servername].aliases %}
+WSGIScriptAlias {{ scriptalias.location }} {{ scriptalias.target }}
 {% endfor %}
 {% endif %}
 

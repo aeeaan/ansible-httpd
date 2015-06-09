@@ -9,14 +9,9 @@
     SetEnvIf X-Forwarded-Proto https HTTPS=on
     {% endif %}
 
-{% if python_wsgi_apps is defined and python_wsgi_apps[item.servername] is defined and python_wsgi_apps[item.servername]|length > 0 %}
-{% for wsgi_app in python_wsgi_apps[item.servername] %}
-{% if wsgi_app.alias is defined and wsgi_app.file is defined %}
-    WSGIDaemonProcess {{ item.servername }}.{{ wsgi_app.name}} processes={{ wsgi_app.processes }} threads={{ wsgi_app.threads }} user={{ wsgi_app.user }} group={{ wsgi_app.group }} umask={{ wsgi_app.umask }}
-{% endif %}
-{% endfor %}
-{% endif %}
-
+    {% if python_wsgi_apps is defined and python_wsgi_apps[item.servername] is defined and python_wsgi_apps[item.servername].aliases is defined and python_wsgi_apps[item.servername].aliases|length > 0 -%}
+    WSGIDaemonProcess {{ item.servername }} processes={{ python_wsgi_apps[item.servername].processes }} threads={{ python_wsgi_apps[item.servername].threads }} user={{ python_wsgi_apps[item.servername].user }} group={{ python_wsgi_apps[item.servername].group }} umask={{ python_wsgi_apps[item.servername].umask }}
+    {% endif %}
 
     {% if item.redirect_http_to_https is defined and item.redirect_http_to_https -%}
     RewriteEngine On
