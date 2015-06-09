@@ -9,6 +9,8 @@ Role Variables
 | :---							| :---					| :---			|
 | httpd_mod_ssl						| true					| 			|
 | httpd_mpm						| prefork				|			|
+| httpd_user						| apache				|			|
+| httpd_group						| apache				|			|
 | httpd_http_port					| 80					|			|
 | httpd_https_port					| 443					|			|
 | httpd_open_http_port					| false					|			|
