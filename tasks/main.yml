@@ -50,8 +50,15 @@
     - httpd
     - configuration
 
+- name: configure vhost include dirs
+  file: path="/etc/httpd/conf.d/vhost_{{ item.servername }}.conf.d" state=directory owner=root group=root mode=0644
+  with_items: httpd_vhosts
+  tags:
+    - httpd
+    - configuration
+
 - name: configure vhost common
-  template: src=vhost.common.conf.j2 dest="/etc/httpd/conf.d/vhost_{{ item.servername }}.common.conf" owner=root group=root mode=0644
+  template: src=vhost.common.conf.j2 dest="/etc/httpd/conf.d/vhost_{{ item.servername }}.conf.d/common.conf" owner=root group=root mode=0644
   with_items: httpd_vhosts
   when: httpd_vhosts is defined
   no_log: true
