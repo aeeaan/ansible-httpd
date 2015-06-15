@@ -9,13 +9,6 @@
     </IfModule>
 </Directory>
 
-{% if python_wsgi_apps is defined and python_wsgi_apps[item.servername] is defined and python_wsgi_apps[item.servername].aliases is defined and python_wsgi_apps[item.servername].aliases|length > 0 %}
-WSGIProcessGroup {{ item.servername }}
-{% for scriptalias in python_wsgi_apps[item.servername].aliases %}
-WSGIScriptAlias {{ scriptalias.location }} {{ scriptalias.target }}
-{% endfor %}
-{% endif %}
-
 {% if item.raw is defined -%}
 {{ item.raw }}
 {%- endif %}
