@@ -36,14 +36,14 @@ Role Variables
 Dependencies
 ------------
 
-* correct.horse.common
+* correcthorse.common
 
 Example Playbook
 ----------------
 
     - hosts: servers
       roles:
-         - { role: correct.horse.httpd }
+         - { role: correcthorse.httpd }
 
 License
 -------
