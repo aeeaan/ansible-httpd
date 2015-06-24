@@ -15,6 +15,7 @@ Role Variables
 | httpd_https_port					| 443					|			|
 | httpd_open_http_port					| false					|			|
 | httpd_open_https_port					| false					|			|
+| httpd_default_override				| None					| 			|
 | httpd_can_network_connect				| 'no'					|			|
 | httpd_can_network_connect_db				| 'yes'					|			|
 | httpd_ssl_certificate					| /etc/pki/tls/certs/localhost.crt	|			|

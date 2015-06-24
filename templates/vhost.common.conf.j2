@@ -7,6 +7,7 @@
         Order allow,deny
         Allow from all
     </IfModule>
+    AllowOverride {% if item.override is defined %}{{ item.override }}{% else %}{{ httpd_default_override }}{% endif %}
 </Directory>
 
 {% if item.raw is defined -%}
