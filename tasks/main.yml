@@ -51,7 +51,7 @@
     - configuration
 
 - name: configure vhost include dirs
-  file: path="/etc/httpd/conf.d/vhost_{{ item.servername }}.conf.d" state=directory owner=root group=root mode=0644
+  file: path="/etc/httpd/conf.d/vhost_{{ item.servername }}.conf.d" state=directory owner=root group=root mode=0755
   with_items: httpd_vhosts
   when: httpd_vhosts is defined and item.servername is defined
   tags:
