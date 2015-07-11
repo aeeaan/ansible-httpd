@@ -27,7 +27,7 @@ Role Variables
 
     httpd_vhosts:
       - servername: localhost2.localdomain	(required)
-        documentroot: /vagrant/static		(required0
+        documentroot: /vagrant/static		(required)
         redirect_http_to_https: false		(optional, default false)
         ssl_offloaded: false			(optional, default false)
         raw: |	       				(optional, for passing in extra apache config)
