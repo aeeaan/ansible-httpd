@@ -2,7 +2,8 @@
 
     ServerName {{ item.servername }}
     DocumentRoot {{ item.documentroot }}
-    CustomLog logs/{{ item.servername }}-access_log combined
+    CustomLog logs/{{ item.servername }}-access_log {% if item.remoteip is defined and item.remoteip %}remoteip{% else %}combined{% endif %}
+
     ErrorLog logs/{{ item.servername }}-error_log
 
     {% if item.ssl_offloaded is defined and item.ssl_offloaded -%}
@@ -23,7 +24,8 @@
 
     ServerName {{ item.servername }}
     DocumentRoot {{ item.documentroot }}
-    CustomLog logs/{{ item.servername }}-access_log combined
+    CustomLog logs/{{ item.servername }}-access_log {% if item.remoteip is defined and item.remoteip %}remoteip{% else %}combined{% endif %}
+
     ErrorLog logs/{{ item.servername }}-error_log
 
     Include conf.d/vhost_{{ item.servername }}.conf.d/*.conf
