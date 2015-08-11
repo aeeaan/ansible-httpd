@@ -27,6 +27,7 @@ Role Variables
 | httpd_remoteip_header					| X-Forwarded-For			|			|
 | httpd_remoteip_internal_proxies			| []					|			|
 | httpd_remoteip_trusted_proxies			| []					|			|
+| httpd_extra_modules					| []					| for extra mod_foo packages that don't warrant their own role |
 
     httpd_vhosts:
       - servername: localhost2.localdomain	(required)

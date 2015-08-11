@@ -13,6 +13,13 @@
     - ssl
     - packages
 
+- name: install extra apache modules
+  yum: name={{ item }} state=present
+  with_items: httpd_extra_modules
+  tags:
+    - httpd
+    - packages
+
 - name: configure httpd.conf
   template: src="httpd.conf.{{ ansible_os_family }}{{ ansible_distribution_major_version }}.j2" dest=/etc/httpd/conf/httpd.conf mode=0644 owner=root group=root
   notify: restart httpd
