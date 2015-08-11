@@ -11,6 +11,17 @@
 
 </Directory>
 
+{% if item.remoteip is defined and item.remoteip %}
+LogFormat "%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+RemoteIPHeader {{ httpd_remoteip_header }}
+{% for item in httpd_remoteip_internal_proxies %}
+RemoteIPInternalProxy {{ item }}
+{% endfor %}
+{% for item in httpd_remoteip_trusted_proxies %}
+RemoteIPTrustedProxy {{ item }}
+{% endfor %}
+{% endif %}
+
 {% if item.raw is defined -%}
 {{ item.raw }}
 {%- endif %}

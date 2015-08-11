@@ -24,12 +24,16 @@ Role Variables
 | httpd_ssl_ca						| ''					|			|
 | httpd_ssl_ciphers					| "EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+AESGCM:EECDH:EDH+AESGCM:EDH+aRSA:HIGH:!MEDIUM:!LOW:!aNULL:!eNULL:!LOW:!RC4:!MD5:!EXP:!PSK:!SRP:!DSS" | |
 | httpd_honor_cipher_order				| true					|			|
+| httpd_remoteip_header					| X-Forwarded-For			|			|
+| httpd_remoteip_internal_proxies			| []					|			|
+| httpd_remoteip_trusted_proxies			| []					|			|
 
     httpd_vhosts:
       - servername: localhost2.localdomain	(required)
         documentroot: /vagrant/static		(required)
         redirect_http_to_https: false		(optional, default false)
         ssl_offloaded: false			(optional, default false)
+        remoteip: false				(optional, active mod_remoteip for vhost, default false)
         raw: |	       				(optional, for passing in extra apache config)
           ExtraApacheConfigDirective1
           ExtraApacheConfigDirective2
