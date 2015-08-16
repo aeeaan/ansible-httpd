@@ -1,6 +1,11 @@
 <VirtualHost *:{{ httpd_http_port }}>
 
     ServerName {{ item.servername }}
+    {% if item.serveraliases is defined and item.serveraliases is sequence %}
+    {% for alias in item.serveraliases %}
+    ServerAlias {{ alias }}
+    {% endfor %}
+
     DocumentRoot {{ item.documentroot }}
     CustomLog logs/{{ item.servername }}-access_log {% if item.remoteip is defined and item.remoteip %}remoteip{% else %}combined{% endif %}
 
@@ -23,6 +28,11 @@
 <VirtualHost *:443>
 
     ServerName {{ item.servername }}
+    {% if item.serveraliases is defined and item.serveraliases is sequence %}
+    {% for alias in item.serveraliases %}
+    ServerAlias {{ alias }}
+    {% endfor %}
+
     DocumentRoot {{ item.documentroot }}
     CustomLog logs/{{ item.servername }}-access_log {% if item.remoteip is defined and item.remoteip %}remoteip{% else %}combined{% endif %}
 
