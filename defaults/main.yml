@@ -16,7 +16,7 @@ httpd_can_network_connect: 'no'
 httpd_can_network_connect_db: 'yes'
 
 httpd_servertokens: Prod
-httpd_traceenable: off
+httpd_traceenable: 'off'
 
 #mod_ssl
 httpd_ssl_certificate: /etc/pki/tls/certs/localhost.crt
