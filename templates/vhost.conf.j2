@@ -5,6 +5,7 @@
     {% for alias in item.serveraliases %}
     ServerAlias {{ alias }}
     {% endfor %}
+    {% endif %}
 
     DocumentRoot {{ item.documentroot }}
     CustomLog logs/{{ item.servername }}-access_log {% if item.remoteip is defined and item.remoteip %}remoteip{% else %}combined{% endif %}
@@ -32,6 +33,7 @@
     {% for alias in item.serveraliases %}
     ServerAlias {{ alias }}
     {% endfor %}
+    {% endif %}
 
     DocumentRoot {{ item.documentroot }}
     CustomLog logs/{{ item.servername }}-access_log {% if item.remoteip is defined and item.remoteip %}remoteip{% else %}combined{% endif %}
