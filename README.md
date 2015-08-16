@@ -18,6 +18,7 @@ Role Variables
 | httpd_default_override				| None					| 			|
 | httpd_can_network_connect				| 'no'					|			|
 | httpd_can_network_connect_db				| 'yes'					|			|
+| httpd_ssl_disable_default_vhost			| false					| disable default ssl vhost |
 | httpd_ssl_certificate					| /etc/pki/tls/certs/localhost.crt	|			|
 | httpd_ssl_key						| /etc/pki/tls/private/localhost.key	|			|
 | httpd_ssl_chain					| '' 					|			|

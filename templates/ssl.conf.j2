@@ -78,6 +78,7 @@ SSLHonorCipherOrder on
 
 SSLCompression off
 
+{% if not httpd_ssl_disable_default_vhost %}
 ##
 ## SSL Virtual Host Context
 ##
@@ -225,4 +226,5 @@ CustomLog logs/ssl_request_log \
 
 </VirtualHost>                                  
 
+{% endif %}
 {% endif %}
