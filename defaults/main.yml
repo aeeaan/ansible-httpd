@@ -15,6 +15,9 @@ httpd_default_override: None
 httpd_can_network_connect: 'no'
 httpd_can_network_connect_db: 'yes'
 
+httpd_servertokens: Prod
+httpd_traceenable: off
+
 #mod_ssl
 httpd_ssl_certificate: /etc/pki/tls/certs/localhost.crt
 httpd_ssl_key: /etc/pki/tls/private/localhost.key

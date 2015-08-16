@@ -18,6 +18,8 @@ Role Variables
 | httpd_default_override				| None					| 			|
 | httpd_can_network_connect				| 'no'					|			|
 | httpd_can_network_connect_db				| 'yes'					|			|
+| httpd_servertokens					| Prod					| Major,Minor,Min,Prod,OS,Full |
+| httpd_traceenable					| off					| off,on,extended - turn on for RFC 2616 compliancy |
 | httpd_ssl_disable_default_vhost			| false					| disable default ssl vhost |
 | httpd_ssl_certificate					| /etc/pki/tls/certs/localhost.crt	|			|
 | httpd_ssl_key						| /etc/pki/tls/private/localhost.key	|			|
