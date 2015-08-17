@@ -19,6 +19,7 @@ httpd_servertokens: Prod
 httpd_traceenable: 'off'
 
 #mod_ssl
+httpd_ssl_disable_default_vhost: false
 httpd_ssl_certificate: /etc/pki/tls/certs/localhost.crt
 httpd_ssl_key: /etc/pki/tls/private/localhost.key
 httpd_ssl_chain: '' 
