@@ -18,6 +18,11 @@ httpd_can_network_connect_db: 'yes'
 httpd_servertokens: Prod
 httpd_traceenable: 'off'
 
+#logrotate settings
+httpd_logrotate_period: weekly
+httpd_logrotate_keep: 5
+httpd_logrotate_compress: false
+
 #mod_ssl
 httpd_ssl_disable_default_vhost: false
 httpd_ssl_certificate: /etc/pki/tls/certs/localhost.crt
