@@ -38,13 +38,15 @@ Role Variables
 | httpd_ssl_key						| /etc/pki/tls/private/localhost.key	|			|
 | httpd_ssl_chain					| '' 					|			|
 | httpd_ssl_ca						| ''					|			|
-| httpd_ssl_ciphers					| "EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+AESGCM:EECDH:EDH+AESGCM:EDH+aRSA:HIGH:!MEDIUM:!LOW:!aNULL:!eNULL:!LOW:!RC4:!MD5:!EXP:!PSK:!SRP:!DSS" | |
 | httpd_honor_cipher_order				| true					|			|
 | httpd_timeout						| 60					|			|
 | httpd_remoteip_header					| X-Forwarded-For			|			|
 | httpd_remoteip_internal_proxies			| []					|			|
 | httpd_remoteip_trusted_proxies			| []					|			|
 | httpd_extra_modules					| []					| for extra mod_foo packages that don't warrant their own role |
+
+    httpd_ssl_ciphers: "EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+AESGCM:EECDH:EDH+AESGCM:EDH+aRSA:HIGH:!MEDIUM:!LOW:!aNULL:!eNULL:!LOW:!RC4:!MD5:!EXP:!PSK:!SRP:!DSS"
+
 
     httpd_vhosts:
       - servername: localhost2.localdomain	(required)
