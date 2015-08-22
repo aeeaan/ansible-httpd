@@ -9,6 +9,37 @@ httpd_https_port: 443
 httpd_open_http_port: false
 httpd_open_https_port: false
 
+httpd_maxconnectionsperchild: 0
+
+#prefork
+httpd_minspareservers: 5
+httpd_maxspareservers: 10
+
+#applies to prefork, worker, and mpm
+httpd_mpm_defaults:
+  prefork:
+    serverlimit: 256
+    startservers: 5
+    maxrequestworkers: 256
+  worker:
+    serverlimit: 16
+    startservers: 3
+    maxrequestworkers: 400
+  event:
+    serverlimit: 16
+    startservers: 3
+    maxrequestworkers: 400
+
+httpd_serverlimit: "{{ httpd_mpm_defaults[httpd_mpm].serverlimit }}"
+httpd_maxrequestworkers: "{{ httpd_mpm_defaults[httpd_mpm].maxrequestworkers }}"
+httpd_startservers: "{{ httpd_mpm_defaults[httpd_mpm].startservers }}"
+
+#worker/event
+httpd_threadlimit: 64
+httpd_threadsperchild: 25
+httpd_minsparethreads: 75
+httpd_maxsparethreads: 250
+
 httpd_default_override: None
 
 #selinux adjustments

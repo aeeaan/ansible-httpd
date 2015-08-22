@@ -15,6 +15,16 @@ Role Variables
 | httpd_https_port					| 443					|			|
 | httpd_open_http_port					| false					|			|
 | httpd_open_https_port					| false					|			|
+| httpd_maxconnectionsperchild				| 0					|			|
+| httpd_minspareservers					| 5					| prefork		|
+| httpd_maxspareservers					| 10					| prefork		|
+| httpd_serverlimit					| 256 prefork, 16 worker/event		| prefork, worker/event |
+| httpd_maxrequestworkers				| 256 prefork, 400 worker/event		| prefork, worker/event |
+| httpd_startservers					| 5 prefork, 3 worker/event		| prefork, worker/event |
+| httpd_threadlimit					| 64	       				| worker/event		|
+| httpd_threadsperchild					| 25					| worker/event		|
+| httpd_minsparethreads					| 75					| worker/event		|
+| httpd_maxsparethreads					| 250					| worker/event		|
 | httpd_default_override				| None					| 			|
 | httpd_can_network_connect				| 'no'					|			|
 | httpd_can_network_connect_db				| 'yes'					|			|

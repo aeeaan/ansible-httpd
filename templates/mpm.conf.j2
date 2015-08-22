@@ -1,0 +1,15 @@
+# {{ ansible_managed }}
+
+ServerLimit {{ httpd_serverlimit }}
+MaxRequestWorkers {{ httpd_maxrequestworkers }}
+StartServers {{ httpd_startservers }}
+MaxConnectionsPerChild {{ httpd_maxconnectionsperchild }}
+{% if httpd_mpm == 'worker' or httpd_mpm == 'event' %}
+ThreadLimit {{ httpd_threadlimit }}
+ThreadsPerChild {{ httpd_threadsperchild }}
+MinSpareThreads {{ httpd_minsparethreads }}
+MaxSpareThreads {{ httpd_maxsparethreads }}
+{% else %}
+MinSpareServers {{ httpd_minspareservers }}
+MaxSpareServers {{ httpd_maxspareservers }}
+{% endif %}

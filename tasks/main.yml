@@ -41,6 +41,7 @@
 - name: configure conf.d
   template: src="{{ item }}.j2" dest="/etc/httpd/conf.d/{{ item }}" owner=root group=root mode=0644
   with_items:
+    - mpm.conf
     - ssl.conf
   notify: restart httpd
   tags:
