@@ -1,5 +1,6 @@
 ---
 httpd_mod_ssl: true
+httpd_mod_deflate: false
 httpd_mpm: prefork
 httpd_user: apache
 httpd_group: apache

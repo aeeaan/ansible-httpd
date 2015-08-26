@@ -8,6 +8,7 @@ Role Variables
 | Variable						| Default				| Notes			|
 | :---							| :---					| :---			|
 | httpd_mod_ssl						| true					| 			|
+| httpd_mod_deflate					| false					| enable global deflate rules |
 | httpd_mpm						| prefork				|			|
 | httpd_user						| apache				|			|
 | httpd_group						| apache				|			|

@@ -43,6 +43,7 @@
   with_items:
     - mpm.conf
     - ssl.conf
+    - deflate.conf
   notify: restart httpd
   tags:
     - httpd
