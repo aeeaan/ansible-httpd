@@ -23,7 +23,6 @@
     Include conf.d/vhost_{{ item.servername }}.conf.d/*.conf
     {% elif item.redirect_http_to_https is defined and item.redirect_http_to_https %}
     RewriteEngine On
-    RewriteCond %{ENV:HTTPS} !on
     RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
     {% else %}
     Include conf.d/vhost_{{ item.servername }}.conf.d/*.conf
