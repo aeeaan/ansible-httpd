@@ -16,11 +16,16 @@
     SetEnvIf X-Forwarded-Proto https HTTPS=on
     {% endif %}
 
-    {% if item.redirect_http_to_https is defined and item.redirect_http_to_https -%}
+    {% if item.redirect_http_to_https is defined and item.redirect_http_to_https and item.ssl_offloaded is defined and item.ssl_offloaded -%}
     RewriteEngine On
     RewriteCond %{ENV:HTTPS} !on
     RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
-    {% else -%}
+    Include conf.d/vhost_{{ item.servername }}.conf.d/*.conf
+    {% elif item.redirect_http_to_https is defined and item.redirect_http_to_https %}
+    RewriteEngine On
+    RewriteCond %{ENV:HTTPS} !on
+    RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
+    {% else %}
     Include conf.d/vhost_{{ item.servername }}.conf.d/*.conf
     {% endif %}
 
