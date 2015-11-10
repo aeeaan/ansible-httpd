@@ -124,3 +124,11 @@
     - httpd
     - configuration
     - services
+
+- name: ensure htcacheclean is enabled and running
+  service: name=htcacheclean enabled=yes state=started
+  when: httpd_htcacheclean == true
+  tags:
+    - httpd
+    - configuration
+    - services
