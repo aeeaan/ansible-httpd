@@ -46,6 +46,9 @@ Role Variables
 | httpd_remoteip_internal_proxies			| []					|			|
 | httpd_remoteip_trusted_proxies			| []					|			|
 | httpd_extra_modules					| []					| for extra mod_foo packages that don't warrant their own role |
+| httpd_cache_root					| /var/cache/httpd/proxy		|     	    	    	|
+| httpd_cache_size					| 100M					|			|
+| httpd_cache_clean_interval				| 15					| in minutes		|
 
     httpd_ssl_ciphers: "EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+AESGCM:EECDH:EDH+AESGCM:EDH+aRSA:HIGH:!MEDIUM:!LOW:!aNULL:!eNULL:!LOW:!RC4:!MD5:!EXP:!PSK:!SRP:!DSS"
 

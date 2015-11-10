@@ -125,6 +125,13 @@
     - configuration
     - services
 
+- name: configure htcacheclean
+  template: src=htcacheclean.sysconfig dest=/etc/sysconfig/htcacheclean mode=0644 owner=root group=root
+  notify: restart htcacheclean
+  tags:
+    - httpd
+    - configuration
+
 - name: ensure htcacheclean is enabled and running
   service: name=htcacheclean enabled=yes state=started
   when: httpd_htcacheclean == true

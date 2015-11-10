@@ -72,3 +72,7 @@ httpd_remoteip_internal_proxies: []
 httpd_remoteip_trusted_proxies: []
 
 httpd_extra_modules: []
+
+httpd_cache_root: /var/cache/httpd/proxy
+httpd_cache_size: 100M
+httpd_cache_clean_interval: 15

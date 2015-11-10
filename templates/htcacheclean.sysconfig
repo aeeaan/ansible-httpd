@@ -1,0 +1,17 @@
+# {{ ansible_managed }}
+#
+# Configuration options for systemd service, htcacheclean.service.
+# See htcacheclean(8) for more information on available options.
+#
+
+# Interval between cache clean runs, in minutes
+INTERVAL={{ httpd_cache_clean_interval }}
+
+# Default cache root.
+CACHE_ROOT={{ httpd_cache_root }}
+
+# Cache size limit in bytes (K=Kbytes, M=Mbytes)
+LIMIT={{ httpd_cache_size }}
+
+# Any other options...
+OPTIONS=
