@@ -127,6 +127,7 @@
 
 - name: configure htcacheclean
   template: src=htcacheclean.sysconfig dest=/etc/sysconfig/htcacheclean mode=0644 owner=root group=root
+  when: httpd_htcacheclean == true
   notify: restart htcacheclean
   tags:
     - httpd
