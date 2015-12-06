@@ -30,7 +30,7 @@
 
 </VirtualHost>
 
-{% if ssl_certificates is defined and ssl_certificates[item.servername] is defined and ssl_certificates[item.servername].private_key is defined and ssl_certificates[item.servername].certificate is defined and httpd_mod_ssl %}
+{% if ssl_certificates is defined and ssl_certificates[item.servername] is defined and ssl_certificates[item.servername].private_key is defined and ssl_certificates[item.servername].certificate is defined and httpd_mod_ssl or item.ssl_vhost is defined and item.ssl_vhost and httpd_mod_ssl %}
 <VirtualHost *:443>
 
     ServerName {{ item.servername }}
@@ -48,11 +48,35 @@
     Include conf.d/vhost_{{ item.servername }}.conf.d/*.conf
 
     SSLEngine On
-    SSLCertificateFile /etc/pki/tls/certs/{{ item.servername }}.crt
-    SSLCertificateKeyFile /etc/pki/tls/private/{{ item.servername }}.key
-    {% if ssl_certificates[item.servername].chain is defined -%}
-    SSLCertificateChainFile /etc/pki/tls/certs/{{ item.servername }}.chain.crt
-    {%- endif %}
+    {% if ssl_certificates is defined and ssl_certificates[item.servername] is defined and ssl_certificates[item.servername].private_key is defined and ssl_certificates[item.servername].certificate is defined %}
+        #using certificate defined by ssl role
+        SSLCertificateFile /etc/pki/tls/certs/{{ item.servername }}.crt
+        SSLCertificateKeyFile /etc/pki/tls/private/{{ item.servername }}.key
+        {% if ssl_certificates[item.servername].chain is defined -%}
+        SSLCertificateChainFile /etc/pki/tls/certs/{{ item.servername }}.chain.crt
+        {%- endif %}
+
+    {% elif item.ssl_key is defined and item.ssl_certificate is defined %}
+
+        #using certificate defined in vhost config
+        SSLCertificateFile {{ item.ssl_certificate }}
+        SSLCertificateKeyFile {{ item.ssl_key }}
+        {% if item.ssl_chain is defined -%}
+        SSLCertificateChainFile {{ item.ssl_chain }}
+        {%- endif %}
+
+    {% else %}
+
+        #using default certificate
+        SSLCertificateFile {{ httpd_ssl_certificate }}
+        SSLCertificateKeyFile {{ httpd_ssl_key }}
+        {% if httpd_ssl_chain != '' -%}
+        SSLCertificateChainFile {{ httpd_ssl_chain }}
+        {%- endif %}
+
+    {% endif %}
+
+
 
 </VirtualHost>
 {% endif %}

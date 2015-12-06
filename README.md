@@ -59,6 +59,10 @@ Role Variables
           - localhost3.localdomain
         documentroot: /vagrant/static		(required)
         redirect_http_to_https: false		(optional, default false)
+        ssl_vhost: true				(optional, set up ssl vhost, default false but ignored if using ssl role to upload cert for vhost)
+        ssl_key: /path/to/key		        (optional, default httpd_ssl_key, ignored if using ssl role to setup cert)
+        ssl_certificate: /path/to/cert          (optional, default httpd_ssl_certificate, ignored if using ssl role to setup cert)
+        ssl_chain: /path/to/chain		(optional, ignored if using ssl role to setup cert
         ssl_offloaded: false			(optional, default false)
         remoteip: false				(optional, active mod_remoteip for vhost, default false)
         raw: |	       				(optional, for passing in extra apache config)
