@@ -1,9 +1,17 @@
 # {{ ansible_managed }}
 
 ServerLimit {{ httpd_serverlimit }}
+{% if ansible_distribution_major_version|int > 6 %}
 MaxRequestWorkers {{ httpd_maxrequestworkers }}
+{% else %}
+MaxClients {{ httpd_maxrequestworkers }}
+{% endif %}
 StartServers {{ httpd_startservers }}
+{% if ansible_distribution_major_version|int > 6 %}
 MaxConnectionsPerChild {{ httpd_maxconnectionsperchild }}
+{% else %}
+MaxRequestsPerChild {{ httpd_maxconnectionsperchild }}
+{% endif %}
 {% if httpd_mpm == 'worker' or httpd_mpm == 'event' %}
 ThreadLimit {{ httpd_threadlimit }}
 ThreadsPerChild {{ httpd_threadsperchild }}
