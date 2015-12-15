@@ -9,6 +9,10 @@
     sharedscripts
     delaycompress
     postrotate
+{% if ansible_distribution_major_version|int > 6 %}
         /bin/systemctl reload httpd.service > /dev/null 2>/dev/null || true
+{% else %}
+        /sbin/service httpd reload > /dev/null 2>/dev/null || true
+{% endif %}
     endscript
 }
