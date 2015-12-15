@@ -11,6 +11,10 @@ LoadModule ssl_module modules/mod_ssl.so
 #
 Listen {{ httpd_https_port }} https
 
+{% if ansible_distribution_major_version|int < 7 %}
+NameVirtualHost *:{{ httpd_https_port }}
+{% endif %}
+
 ##
 ##  SSL Global Context
 ##

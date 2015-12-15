@@ -99,6 +99,7 @@ KeepAliveTimeout 15
 #
 #Listen 12.34.56.78:80
 Listen {{ httpd_http_port }}
+NameVirtualHost *:{{ httpd_http_port }}
 
 #
 # Dynamic Shared Object (DSO) Support
