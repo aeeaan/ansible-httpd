@@ -1,5 +1,10 @@
 # {{ ansible_managed }}
 {% if httpd_mod_ssl %}
+{% if ansible_distribution_major_version|int < 7 %}
+# module loaded here on RHEL 6, not in conf.modules.d
+LoadModule ssl_module modules/mod_ssl.so
+{% endif %}
+
 #
 # When we also provide SSL we have to listen to the 
 # the HTTPS port in addition.
