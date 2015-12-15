@@ -12,6 +12,7 @@
 </Directory>
 
 {% if item.remoteip is defined and item.remoteip %}
+<IfModule mod_remoteip.c>
 RemoteIPHeader {{ httpd_remoteip_header }}
 {% for item in httpd_remoteip_internal_proxies %}
 RemoteIPInternalProxy {{ item }}
@@ -19,6 +20,7 @@ RemoteIPInternalProxy {{ item }}
 {% for item in httpd_remoteip_trusted_proxies %}
 RemoteIPTrustedProxy {{ item }}
 {% endfor %}
+</IfModule>
 {% endif %}
 
 {% if item.raw is defined -%}
