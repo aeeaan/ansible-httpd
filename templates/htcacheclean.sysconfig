@@ -11,7 +11,11 @@ INTERVAL={{ httpd_cache_clean_interval }}
 CACHE_ROOT={{ httpd_cache_root }}
 
 # Cache size limit in bytes (K=Kbytes, M=Mbytes)
+{% if ansible_distribution_major_version|int > 6 %}
 LIMIT={{ httpd_cache_size }}
+{% else %}
+CACHE_LIMIT={{ httpd_cache_size }}
+{% endif %}
 
 # Any other options...
 OPTIONS=
