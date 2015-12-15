@@ -1,0 +1,26 @@
+# {{ ansible_managed }}
+#
+# This file can be used to set additional environment variables for
+# the httpd process, or pass additional options to the httpd
+# executable.
+#
+{% if ansible_distribution_major_version|int < 7 and httpd_mpm != "prefork" %}
+HTTPD=/usr/sbin/httpd.{{ httpd_mpm }}
+{% endif %}
+
+# To pass additional options (for instance, -D definitions) to the
+# httpd binary at startup, set OPTIONS here.
+#
+#OPTIONS=
+
+#
+# This setting ensures the httpd process is started in the "C" locale
+# by default.  (Some modules will not behave correctly if
+# case-sensitive string comparisons are performed in a different
+# locale.)
+#
+{% if ansible_distribution_major_version|int > 6 %}
+LANG=C
+{% else %}
+HTTPD_LANG=C
+{% endif %}

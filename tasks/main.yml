@@ -27,6 +27,13 @@
     - httpd
     - configuration
 
+- name: configure sysconfig file
+  template: src=httpd.sysconfig.j2 dest=/etc/sysconfig/httpd owner=root group=root mode=0755
+  notify: restart httpd
+  tags:
+    - httpd
+    - configuration
+
 - name: configure modules
   template: src="{{ item }}.j2" dest="/etc/httpd/conf.modules.d/{{ item }}" owner=root group=root mode=0644
   with_items:
