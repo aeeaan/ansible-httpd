@@ -1,4 +1,4 @@
 # {{ ansible_managed }}
 {% for module in item %}
-LoadModule {% module.value.name %} {% module.value.src %}
+LoadModule {{ module.value.name }} {{ module.value.src }}
 {% endfor %}
