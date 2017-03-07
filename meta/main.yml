@@ -13,4 +13,4 @@ galaxy_info:
   categories:
   - web
 dependencies:
-  - { role: correcthorse.common }
+  - correcthorse.common
