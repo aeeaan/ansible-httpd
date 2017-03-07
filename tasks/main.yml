@@ -5,6 +5,10 @@
     - httpd
     - packages
 
+- name: enable extra built-in modules
+  template: src=99-custom.conf.j2 dest=/etc/httpd/conf.modules.d/99-custom.conf owner=root group=root mode=0644
+  with_dict: "{{ httpd_extra_base_modules }}"
+
 - name: install mod_ssl
   yum: name=mod_ssl state=present
   when: httpd_mod_ssl == true

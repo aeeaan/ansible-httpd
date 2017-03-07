@@ -71,7 +71,11 @@ httpd_remoteip_header: X-Forwarded-For
 httpd_remoteip_internal_proxies: []
 httpd_remoteip_trusted_proxies: []
 
+# yum install mod pkgs
 httpd_extra_modules: []
+
+# enable modules included with httpd package that are disabled by default
+httpd_extra_base_modules: []
 
 httpd_cache_root: /var/cache/httpd/proxy
 httpd_cache_size: 100M
