@@ -18,6 +18,7 @@
 
 - name: install passlib for ansible htpasswd
   yum: name=python-passlib state=present
+  when: ansible_distribution_major_version|int < 8
   tags:
     - httpd
     - packages
