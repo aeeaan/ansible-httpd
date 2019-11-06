@@ -16,12 +16,25 @@
     - ssl
     - packages
 
+- name: Generate an OpenSSL private key
+  openssl_privatekey:
+    path: /etc/pki/tls/private/localhost.key
+    mode: 0600
+
+- name: Generate an OpenSSL Certificate Signing Request
+  openssl_csr:
+    path: /etc/pki/tls/certs/localhost.csr
+    privatekey_path: /etc/pki/tls/private/localhost.key
+    common_name: localhost
+    mode: 0644
+
 - name: Generate a Self Signed OpenSSL certificate
   openssl_certificate:
     path: /etc/pki/tls/certs/localhost.crt
     csr_path: /etc/pki/tls/certs/localhost.csr
     privatekey_path: /etc/pki/tls/private/localhost.key
     provider: selfsigned
+    mode: 0644
 
 - name: install passlib for ansible htpasswd
   yum: name=python-passlib state=present
