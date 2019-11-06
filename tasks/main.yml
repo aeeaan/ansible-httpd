@@ -19,6 +19,7 @@
 - name: Generate a Self Signed OpenSSL certificate
   openssl_certificate:
     path: /etc/pki/tls/certs/localhost.crt
+    csr_path: /etc/pki/tls/certs/localhost.csr
     privatekey_path: /etc/pki/tls/private/localhost.key
     provider: selfsigned
 
