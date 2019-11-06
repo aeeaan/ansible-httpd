@@ -16,6 +16,12 @@
     - ssl
     - packages
 
+- name: Generate a Self Signed OpenSSL certificate
+  openssl_certificate:
+    path: /etc/pki/tls/certs/localhost.crt
+    privatekey_path: /etc/pki/tls/private/localhost.key
+    provider: selfsigned
+
 - name: install passlib for ansible htpasswd
   yum: name=python-passlib state=present
   when: ansible_distribution_major_version|int < 8
