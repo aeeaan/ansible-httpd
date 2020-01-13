@@ -48,7 +48,7 @@ httpd_default_override: None
 httpd_can_network_connect: 'no'
 httpd_can_network_connect_db: 'yes'
 
-httpd_serversignature: Off
+httpd_serversignature: 'Off'
 httpd_servertokens: Prod
 httpd_traceenable: 'off'
 
