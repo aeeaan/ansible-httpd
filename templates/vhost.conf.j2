@@ -76,7 +76,9 @@
 
     {% endif %}
 
-
+{% if item.https_raw is defined -%}
+{{ item.https_raw }}
+{%- endif %}
 
 </VirtualHost>
 {% endif %}
