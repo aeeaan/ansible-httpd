@@ -158,6 +158,14 @@
     - selinux
     - configuration
 
+- name: allow sendmail use
+  seboolean: name=httpd_can_sendmail state={{ httpd_can_sendmail }} persistent=yes
+  when: ansible_selinux.status == 'enabled'
+  tags:
+    - httpd
+    - selinux
+    - configuration
+
 - name: ensure httpd is enabled and running
   service: name=httpd enabled=yes state=started
   tags:
